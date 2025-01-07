@@ -12,6 +12,11 @@ export default defineConfig({
         changeOrigin: true, // Changes the origin of the request to match the target
         secure: false, // Set to false if the target server uses self-signed SSL
       },
+      "/api": {
+        target: "http://192.168.56.2:8000", // Your Seafile server URL
+        changeOrigin: true, // Changes the origin of the request to match the target
+        secure: false, // Set to false if the target server uses self-signed SSL
+      },
     },
   },
 });

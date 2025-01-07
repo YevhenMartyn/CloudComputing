@@ -16,6 +16,7 @@ import { LinkItem } from "./components/uiElements/Navbar/NavbarTypes";
 import { userLogout } from "./slices/authSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "./store";
+import HistoryPage from "./components/uiElements/pages/HistoryPage";
 
 function App() {
   return (
@@ -35,7 +36,10 @@ const AppContent: React.FC = () => {
     await dispatch(userLogout({ navigate }));
   };
 
-  const links: LinkItem[] = [{ name: "Home", link: PageRoute.Home }];
+  const links: LinkItem[] = [
+    { name: "Home", link: PageRoute.Home },
+    { name: "History", link: PageRoute.History },
+  ];
 
   return (
     <>
@@ -50,6 +54,16 @@ const AppContent: React.FC = () => {
                 path={PageRoute.Home}
                 element={
                   isLoggedIn ? <HomePage /> : <Navigate to={PageRoute.Login} />
+                }
+              />
+              <Route
+                path={PageRoute.History}
+                element={
+                  isLoggedIn ? (
+                    <HistoryPage />
+                  ) : (
+                    <Navigate to={PageRoute.Login} />
+                  )
                 }
               />
             </>

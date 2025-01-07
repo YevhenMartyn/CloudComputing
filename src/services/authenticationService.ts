@@ -24,3 +24,12 @@ export const useCurrentUser = () => {
   }
   return { token: userToken };
 };
+
+export const getAuthHeaders = () => {
+  const token = "d8d31b88607da236459121cdc4602eb67f37699a";
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+};
