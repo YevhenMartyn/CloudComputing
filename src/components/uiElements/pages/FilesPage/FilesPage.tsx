@@ -18,9 +18,11 @@ import {
   deleteFile,
   downloadFile,
   fetchFiles,
+  uploadFile,
 } from "../../../../slices/fileSlice";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DownloadIcon from "@mui/icons-material/Download";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 const FilesPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -40,10 +42,32 @@ const FilesPage: React.FC = () => {
     dispatch(downloadFile(path));
   };
 
+  const handleUploadButton = (files: FileList) => {
+    Array.from(files).forEach((file) => {
+      dispatch(uploadFile({ file, path: "/" }));
+    });
+  };
+
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
       <Typography variant="h4" gutterBottom>
         Your Files
+      </Typography>
+      <Typography>
+        <strong>Upload new files:</strong>
+        <Button component="label">
+          <FileUploadIcon fontSize="large" />
+          <input
+            type="file"
+            hidden
+            multiple
+            onChange={(e) => {
+              if (e.target.files && e.target.files.length > 0) {
+                handleUploadButton(e.target.files);
+              }
+            }}
+          />
+        </Button>
       </Typography>
 
       {error && (
@@ -52,7 +76,7 @@ const FilesPage: React.FC = () => {
         </Alert>
       )}
 
-      {!loading && !error && data.length > 0 && (
+      {!loading && data.length > 0 && (
         <TableContainer component={Paper} sx={{ mt: 3 }}>
           <Table>
             <TableHead>

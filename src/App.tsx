@@ -17,7 +17,7 @@ import { userLogout } from "./slices/authSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "./store";
 import HistoryPage from "./components/uiElements/pages/HistoryPage";
-import FilesPage from "./components/uiElements/pages/FilesPage/FIlesPage";
+import FilesPage from "./components/uiElements/pages/FilesPage/FilesPage";
 
 function App() {
   return (

@@ -6,7 +6,11 @@ import {
 } from "../services/directoryService";
 import { RootState } from "../store";
 import { getDefaultLibrary } from "../services/libraryService";
-import { deleteFileByPath, downloadFileByPath } from "../services/fileService";
+import {
+  deleteFileByPath,
+  downloadFileByPath,
+  uploadFileToRepo,
+} from "../services/fileService";
 
 interface FilesState {
   data: DirectoryItemToDisplay[];
@@ -60,6 +64,21 @@ export const downloadFile = createAsyncThunk(
   }
 );
 
+export const uploadFile = createAsyncThunk(
+  "file/uploadFile",
+  async ({ path, file }: { path: string; file: File }, { rejectWithValue }) => {
+    try {
+      const repo_Id = (await getDefaultLibrary()).repo_id;
+      await uploadFileToRepo(repo_Id, path, file);
+      const items = await getListOfItems(repo_Id);
+      return items;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      return rejectWithValue(axiosError.message);
+    }
+  }
+);
+
 const fileSlice = createSlice({
   name: "file",
   initialState,
@@ -98,6 +117,20 @@ const fileSlice = createSlice({
         state.loading = false;
       })
       .addCase(downloadFile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(uploadFile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(uploadFile.fulfilled, (state, action) => {
+        state.loading = false;
+        if (action.payload) {
+          state.data = action.payload;
+        }
+      })
+      .addCase(uploadFile.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
