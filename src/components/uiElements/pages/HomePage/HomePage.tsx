@@ -1,8 +1,6 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
 const HomePage: React.FC = () => {
-  const navigate = useNavigate();
   return (
     <Box
       sx={{

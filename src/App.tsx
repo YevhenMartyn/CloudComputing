@@ -17,6 +17,7 @@ import { userLogout } from "./slices/authSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "./store";
 import HistoryPage from "./components/uiElements/pages/HistoryPage";
+import FilesPage from "./components/uiElements/pages/FilesPage/FIlesPage";
 
 function App() {
   return (
@@ -37,8 +38,8 @@ const AppContent: React.FC = () => {
   };
 
   const links: LinkItem[] = [
-    { name: "Home", link: PageRoute.Home },
     { name: "History", link: PageRoute.History },
+    { name: "Files", link: PageRoute.Files },
   ];
 
   return (
@@ -64,6 +65,12 @@ const AppContent: React.FC = () => {
                   ) : (
                     <Navigate to={PageRoute.Login} />
                   )
+                }
+              />
+              <Route
+                path={PageRoute.Files}
+                element={
+                  isLoggedIn ? <FilesPage /> : <Navigate to={PageRoute.Login} />
                 }
               />
             </>

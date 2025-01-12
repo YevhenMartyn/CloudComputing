@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getAuthHeaders } from "./authenticationService";
-import { data } from "react-router-dom";
 
 interface DefaultLibraryData {
   repo_id: string;
