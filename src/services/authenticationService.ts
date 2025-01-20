@@ -26,7 +26,7 @@ export const useCurrentUser = () => {
 };
 
 export const getAuthHeaders = () => {
-  const token = "d8d31b88607da236459121cdc4602eb67f37699a";
+  const token = localStorage.getItem("token");
   return {
     headers: {
       Authorization: `Bearer ${token}`,
