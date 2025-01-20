@@ -60,7 +60,7 @@ const HistoryPage: React.FC = () => {
               {data.map((item, index) => (
                 <TableRow key={index}>
                   <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.email}</TableCell>
+                  <TableCell>{item.contact_email}</TableCell>
                   <TableCell>{item.time}</TableCell>
                   <TableCell>{item.description}</TableCell>
                 </TableRow>

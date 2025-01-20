@@ -21,7 +21,7 @@ type getListOfItemsResponse = {
 export type DirectoryItemToDisplay = {
   id: string;
   name: string;
-  mtime: number;
+  modifier_contact_email: string;
   type: string;
   size: number;
 };
@@ -32,7 +32,7 @@ const mapFirectoryToItemToDisplay = (
   id: response.id,
   name: response.name,
   type: response.type,
-  mtime: response.mtime,
+  modifier_contact_email: response.modifier_contact_email,
   size: response.size,
 });
 

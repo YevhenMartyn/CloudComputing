@@ -9,7 +9,7 @@ interface DefaultLibraryData {
 export type HistoryItem = {
   id: string;
   name: string;
-  email: string;
+  contact_email: string | null;
   time: string;
   description: string;
 };
@@ -30,7 +30,7 @@ type HistoryResponse = {
 const mapToHistoryItem = (response: HistoryResponse): HistoryItem => ({
   id: response.commit_id,
   name: response.name,
-  email: response.email,
+  contact_email: response.contact_email,
   time: response.time,
   description: response.description,
 });

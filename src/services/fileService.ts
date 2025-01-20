@@ -44,6 +44,10 @@ export const uploadFileToRepo = async (
     last_modify: file.lastModified,
   };
 
+  if (file.name.endsWith(".zip")) {
+    console.log("File is a zip file");
+  }
+
   formData.append("file", fileUploadRequest.file);
   formData.append("parent_dir", fileUploadRequest.parent_dir);
   formData.append("replace", fileUploadRequest.replace.toString());

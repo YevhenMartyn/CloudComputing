@@ -91,7 +91,7 @@ const FilesPage: React.FC = () => {
                   <strong>Size</strong>
                 </TableCell>
                 <TableCell>
-                  <strong>Modification Time</strong>
+                  <strong>Modifier Email</strong>
                 </TableCell>
                 <TableCell>
                   <strong>Download</strong>
@@ -106,8 +106,8 @@ const FilesPage: React.FC = () => {
                 <TableRow key={index}>
                   <TableCell>{item.name}</TableCell>
                   <TableCell>{item.type}</TableCell>
-                  <TableCell>{item.size}</TableCell>
-                  <TableCell>{item.mtime}</TableCell>
+                  <TableCell>{item.size}B</TableCell>
+                  <TableCell>{item.modifier_contact_email}</TableCell>
                   <TableCell>
                     <Button onClick={handleDownloadButton(item.name)}>
                       <DownloadIcon />
